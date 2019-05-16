@@ -1,0 +1,14 @@
+(Project.config "title" "SIMplify")
+(relative-include "walk.h")
+(register walk-dir (Fn [String String (Fn [&String] ())] ()) "walk_dir")
+(defn main []
+  (let [dir
+        (if (= (System.get-args-len) 1)
+          ; TODO stop hard-coding home dir
+          "/home/nat/.stepmania-5.1/Songs"
+          (System.get-arg 1)
+          )
+        ]
+    (walk-dir @dir @".*\\.sm$" IO.println)
+    )
+  )
